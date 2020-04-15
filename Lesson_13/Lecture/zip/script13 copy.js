@@ -137,7 +137,7 @@ AppData.prototype.getExpenses = function(){
     });
 };
 AppData.prototype.getIncome = function(){ //Получение доп доходов.
-    incomeItems.forEach(function(item){
+    incomeItemsRemake.forEach(function(item){
         let itemIncome = item.querySelector('.income-title').value;
         let cashIncome = item.querySelector('.income-amount').value;
          if(itemIncome !== '' && cashIncome !== ''){
@@ -239,20 +239,41 @@ AppData.prototype.reset = function(event){
     btnExpAdd.removeAttribute('disabled');
     checkBox.checked = false;   
 };
+AppData.prototype.eventsListeners = function(event, target, action){
+    if (event) {
+        return `${target}.addEventListener(${event}, ${action})`;
+    }
 
-expensesTitleRemake.addEventListener('keyup', appData.blockInput);
-incomeTitleRemake.addEventListener('keyup', appData.blockInput);
+};
+AppData.prototype.listOfEventListeners = function(target){
+    // if (expensesTitleRemake) { return expensesTitleRemake.addEventListener('keyup', AppData.blockInput)};
+    // if (target = )    return incomeTitleRemake.addEventListener('keyup', AppData.blockInput);
 
-incomeAmountRemake.addEventListener('keyup', appData.blockincomeAmount);
-additionalIncomeAmountRemake.addEventListener('keyup', appData.blockadditionalIncomeAmount);
-expensesAmountRemake.addEventListener('keyup', appData.blockexpensesAmount);
-targetAmountRemake.addEventListener('keyup', appData.blocktargetAmount);
-periodAmountRemake.addEventListener('keyup', appData.blockperiodAmount);
-btnExpAdd.addEventListener('click', appData.addExpensesBlock); //Активация плюсиков
-btnIncAdd.addEventListener('click', appData.addIncomeBlock);
+    // if (target = )    return incomeAmountRemake.addEventListener('keyup', AppData.blockincomeAmount);
+    // if (target = )    return additionalIncomeAmountRemake.addEventListener('keyup', AppData.blockadditionalIncomeAmount);
+    // if (target = )    return expensesAmountRemake.addEventListener('keyup', AppData.blockexpensesAmount);
+    // if (target = )    return targetAmountRemake.addEventListener('keyup', AppData.blocktargetAmount);
+    // if (target = )    return periodAmountRemake.addEventListener('keyup', AppData.blockperiodAmount);
+    // if (target = )    return btnExpAdd.addEventListener('click', AppData.addExpensesBlock);
+    // if (target = )    return btnIncAdd.addEventListener('click', AppData.addIncomeBlock);
 
-startRemake.addEventListener('click', appData.startingSet);
-cancelRemake.addEventListener('click', appData.reset);
+    if (target === startRemake) return startRemake.addEventListener('click', AppData.startingSet);
+    // if (target = )    return cancelRemake.addEventListener('click', AppData.reset);
+};
+
+expensesTitleRemake.addEventListener('keyup', AppData.blockInput);
+incomeTitleRemake.addEventListener('keyup', AppData.blockInput);
+
+incomeAmountRemake.addEventListener('keyup', AppData.blockincomeAmount);
+additionalIncomeAmountRemake.addEventListener('keyup', AppData.blockadditionalIncomeAmount);
+expensesAmountRemake.addEventListener('keyup', AppData.blockexpensesAmount);
+targetAmountRemake.addEventListener('keyup', AppData.blocktargetAmount);
+periodAmountRemake.addEventListener('keyup', AppData.blockperiodAmount);
+btnExpAdd.addEventListener('click', AppData.addExpensesBlock); //Активация плюсиков
+btnIncAdd.addEventListener('click', AppData.addIncomeBlock);
+
+startRemake.addEventListener('click', AppData.startingSet);
+cancelRemake.addEventListener('click', AppData.reset);
 
 
 const appDataRemake = new AppData();
