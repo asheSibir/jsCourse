@@ -42,32 +42,50 @@ square.style.height = '100px';
 square.style.width = '100px';
 square.style.position = 'absolute';
 
-function moveKey (event){
 
-    const blueSquare = document.querySelector('div');
-    const csst = window.getComputedStyle(square);
-     
-    const left = parseInt(csst.marginLeft);
-    const top = parseInt(csst.marginTop);
-
-    switch(event.keyCode){
-         
-        case 37:  // если нажата клавиша влево
-            if(left>0)
-            blueSquare.style.marginLeft = left - 10 + "px";
-            break;
-        case 38:   // если нажата клавиша вверх
-            if(top>0)
-            blueSquare.style.marginTop = top - 10 + "px";
-            break;
-        case 39:   // если нажата клавиша вправо
-            if(left < document.documentElement.clientWidth - 100)
-            blueSquare.style.marginLeft = left + 10 + "px";
-            break;
-        case 40:   // если нажата клавиша вниз
-            if(top < document.documentElement.clientHeight - 100)
-            blueSquare.style.marginTop = top + 10 + "px";
-            break;
+function move (e){
+    if (e) {
+        document.style.marginLeft = '300px';
     }
 }
-square.addEventListener('keydown', moveKey)
+let left = 0,
+    up = 0,
+    right = 0,
+    down = 0,
+    axisX = 0,
+    axisY = 0,
+    distance = 10;
+
+document.addEventListener('keydown', function (event){
+    //console.log(event.keyCode);
+    //console.log(square.style);
+    left += 10;
+    up += 10;
+    right += 10;
+    down += 10;
+    
+
+    let eCode = event.keyCode;
+    
+    if(eCode === 39) {
+        axisX += distance;
+        square.style.marginLeft = `${axisX}px`;
+        console.log(axisX);
+    }
+    if(eCode === 37) {
+        axisX -= distance;
+        square.style.marginLeft = `${axisX}px`;
+        console.log(axisX);
+    }
+    if(eCode === 38) {
+        axisY -= distance;
+        square.style.marginTop= `${axisY}px`;
+        console.log(axisY);
+    }
+    if(eCode === 40) {
+        axisY += distance;
+        square.style.marginTop = `${axisY}px`;
+        console.log(axisY);
+    }
+
+});
